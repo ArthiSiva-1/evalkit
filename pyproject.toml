@@ -1,5 +1,5 @@
 [project]
-name = "evalkit"
+name = "evalkit-rag"
 version = "0.1.0"
 description = "Counterfactual evaluation toolkit for RAG systems"
 readme = "README.md"
