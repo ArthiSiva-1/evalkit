@@ -1,6 +1,7 @@
 from .base import BaseMetric
 from ..models import MetricResult
 
+
 class RetrievalEfficiency(BaseMetric):
 
     def __init__(self, judge):
@@ -36,9 +37,19 @@ class RetrievalEfficiency(BaseMetric):
 
         score = len(required) / len(contexts)
 
+        # 👉 NEW: importance scores
+        importance_scores = {}
+
+        for idx in required:
+            importance_scores[idx] = 1.0
+
+        for idx in redundant:
+            importance_scores[idx] = 0.0
+
         return MetricResult(
             score=score,
             required_contexts=required,
             redundant_contexts=redundant,
-            explanation=f"{score:.2f} retrieval efficiency"
+            explanation=f"{score:.2f} retrieval efficiency",
+            importance_scores=importance_scores
         )

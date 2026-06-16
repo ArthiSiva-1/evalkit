@@ -1,10 +1,13 @@
-[build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "evalkit"
 version = "0.1.0"
+description = "Counterfactual evaluation toolkit for RAG systems"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "litellm"
+]
 
-[tool.setuptools]
-packages = ["evalkit"]
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
