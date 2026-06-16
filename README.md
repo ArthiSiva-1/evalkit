@@ -1,32 +1,22 @@
 # EvalKit
 
-Evaluation toolkit for LLM and RAG systems.
+EvalKit is an open-source evaluation framework for RAG systems.
 
-## Installation
+It answers a simple question:
 
-```bash
-pip install -e .
-```
+"Which retrieved chunks actually mattered?"
 
-## Example
+## Retrieval Efficiency
 
-```python
-from evalkit import RetrievalEfficiency
-from evalkit.judges.fake import FakeJudge
+For every retrieved chunk:
 
-metric = RetrievalEfficiency(
-    judge=FakeJudge()
-)
+1. Remove the chunk
+2. Ask a judge if the answer can still be generated
+3. If yes → redundant
+4. If no → required
 
-result = metric.measure(
-    query="What is the refund policy?",
-    contexts=[
-        "Refunds within 30 days",
-        "Proof of purchase required",
-        "Office hours are 9-5"
-    ],
-    answer="Refunds within 30 days with proof of purchase"
-)
+Output:
 
-print(result)
-```
+- Retrieval Efficiency Score
+- Required Contexts
+- Redundant Contexts
